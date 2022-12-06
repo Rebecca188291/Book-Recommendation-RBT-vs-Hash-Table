@@ -32,7 +32,7 @@ class tree
     void printInorderHelper(TreeNode* currNode, vector<int>& titles);
     bool remove(int wordcount);
     TreeNode* traversal(TreeNode* root, int wordcount);
-    TreeNode* tracker(TreeNode* root, int wordcount, vector<Book>& library);
+    TreeNode* tracker(TreeNode* root , int wordcount, vector<Book>& library);
     vector<Book> findTop5(int targetWordCount);
     void flipColor(TreeNode* currNode, TreeNode* exception);
 
