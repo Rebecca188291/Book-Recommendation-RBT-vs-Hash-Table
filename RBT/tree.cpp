@@ -200,7 +200,7 @@ bool tree::remove(int wordcount)
         {
             delete root;
             root = nullptr;
-            cout << "successful" << endl;
+            //cout << "successful" << endl;
             return true;
         }
         // If there is only one, left child node from the node to remove
@@ -210,7 +210,7 @@ bool tree::remove(int wordcount)
             root = root->left;
             root->parent = nullptr;
             delete temp;
-            cout << "successful" << endl;
+            //cout << "successful" << endl;
             return true;
         }
         // If there is only one, right child node from the node to remove
@@ -220,7 +220,7 @@ bool tree::remove(int wordcount)
             root = root->right;
             root->parent = nullptr;
             delete temp;
-            cout << "successful" << endl;
+           // cout << "successful" << endl;
             return true;
         }
         // If there are two nodes from the node to remove
@@ -237,7 +237,7 @@ bool tree::remove(int wordcount)
                 delete root;
                 root = successorParent;
                 root->parent = nullptr;
-                cout << "successful" << endl;
+                //cout << "successful" << endl;
                 return true;
             }
 
@@ -270,7 +270,7 @@ bool tree::remove(int wordcount)
                 successorParent->left = nullptr;
 
             }
-            cout << "successful" << endl;
+            //cout << "successful" << endl;
             return true;
         }
     }
@@ -278,7 +278,6 @@ bool tree::remove(int wordcount)
 
     if (parent == nullptr)
     {
-        cout << "unsuccessful" << endl;
         return false;
     }
 
@@ -293,7 +292,6 @@ bool tree::remove(int wordcount)
         {
             parent->left = nullptr;
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
         // If there is only one, left child node from the node to remove
@@ -302,7 +300,6 @@ bool tree::remove(int wordcount)
             parent->left = removeNode->left;
             removeNode->left->parent = parent;
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
         // If there is only one, right child node from the node to remove
@@ -311,7 +308,6 @@ bool tree::remove(int wordcount)
             parent->left = removeNode->right;
             parent->left->parent = parent;
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
         // If there are two nodes from the node to remove
@@ -328,7 +324,6 @@ bool tree::remove(int wordcount)
                 parent->left = successorParent;
                 successorParent->parent = parent;
                 delete removeNode;
-                cout << "successful" << endl;
                 return true;
             }
 
@@ -364,7 +359,6 @@ bool tree::remove(int wordcount)
                 successorParent->left = nullptr;
             }
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
 
@@ -377,21 +371,18 @@ bool tree::remove(int wordcount)
         {
             parent->right = nullptr;
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
         else if (removeNode->left != nullptr && removeNode->right == nullptr)
         {
             parent->right = removeNode->left;
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
         else if (removeNode->right != nullptr && removeNode->left == nullptr)
         {
             parent->right = removeNode->right;
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
 
@@ -407,7 +398,6 @@ bool tree::remove(int wordcount)
                 successorParent->left = removeNode->left;
                 parent->right = successorParent;
                 delete removeNode;
-                cout << "successful" << endl;
                 return true;
             }
 
@@ -442,7 +432,6 @@ bool tree::remove(int wordcount)
                 successorParent->left = nullptr;
             }
             delete removeNode;
-            cout << "successful" << endl;
             return true;
         }
     }
