@@ -34,6 +34,8 @@ class tree
     TreeNode* traversal(TreeNode* root, int wordcount);
     TreeNode* tracker(TreeNode* root, int wordcount, vector<Book>& library);
     vector<Book> findTop5(int targetWordCount);
+    void flipColor(TreeNode* currNode, TreeNode* exception);
+
 
 
 

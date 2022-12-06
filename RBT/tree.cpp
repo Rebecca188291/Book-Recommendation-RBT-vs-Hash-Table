@@ -33,7 +33,7 @@ tree::TreeNode* tree::insertHelper(tree::TreeNode* currNode, Book newBook)
             }
             else
             {
-                //flipColors(root, currNode->left);
+                flipColor(root, currNode->left);
             }
         }
 
@@ -54,7 +54,7 @@ tree::TreeNode* tree::insertHelper(tree::TreeNode* currNode, Book newBook)
             }
             else
             {
-                //flipColors(root, currNode->right);
+                flipColor(root, currNode->right);
             }
         }
 
@@ -103,7 +103,7 @@ void tree::flipColors(TreeNode* currNode, TreeNode* exception)
         return;
     }
 
-    cout << curr->bookNode.title << endl;
+    //cout << curr->bookNode.title << endl;
     bool red = curr->red;
     string color = "";
     if (red)
@@ -114,13 +114,13 @@ void tree::flipColors(TreeNode* currNode, TreeNode* exception)
     {
         color = "black";
     }
-    cout << curr->bookNode.title << " color is " << color << endl;
+    //cout << curr->bookNode.title << " color is " << color << endl;
 
     curr->red = !(curr->red);
     flipColors(curr->left, exception);
     flipColors(curr->right, exception);
     
-    cout << curr->bookNode.title << " color is " << color << endl;
+   // cout << curr->bookNode.title << " color is " << color << endl;
     return;
 
 }
@@ -151,42 +151,6 @@ tree::TreeNode* tree::rotateLeftChild(TreeNode* parent, TreeNode* child)
         parent->parent = greatGrandpa;
     }
     return parent;
-}
-
-void tree::printInorder()
-{
-    vector<int> titles;
-    if (root == nullptr)
-    {
-        cout << "";
-        return;
-    }
-    printInorderHelper(root, titles);
-    for (int i = 0; i < titles.size(); i++)
-    {
-        if (i == titles.size() - 1)
-        {
-            cout << titles[i] << endl;
-        }
-        else
-        {
-            cout << titles[i] << ", ";
-        }
-    }
-}
-
-void tree::printInorderHelper(TreeNode* currNode, vector<int>& titles)
-{
-    if (currNode == nullptr)
-    {
-        cout << "";
-    }
-    else
-    {
-        printInorderHelper(currNode->left, titles);
-        titles.push_back(currNode->bookNode.wordCount);
-        printInorderHelper(currNode->right, titles);
-    }
 }
 
 bool tree::remove(int wordcount)
@@ -551,3 +515,53 @@ void tree::printTop5(int targetWordCount)
         cout << endl;
     }
 }
+
+
+//tests:
+
+void tree::flipColor(TreeNode* currNode, TreeNode* exception)
+{
+    //TESTING FLIPCOLORS
+    // 
+    // 
+    //
+
+}
+
+/*
+void tree::printInorder()
+{
+    vector<int> titles;
+    if (root == nullptr)
+    {
+        cout << "";
+        return;
+    }
+    printInorderHelper(root, titles);
+    for (int i = 0; i < titles.size(); i++)
+    {
+        if (i == titles.size() - 1)
+        {
+            cout << titles[i] << endl;
+        }
+        else
+        {
+            cout << titles[i] << ", ";
+        }
+    }
+}
+
+void tree::printInorderHelper(TreeNode* currNode, vector<int>& titles)
+{
+    if (currNode == nullptr)
+    {
+        cout << "";
+    }
+    else
+    {
+        printInorderHelper(currNode->left, titles);
+        titles.push_back(currNode->bookNode.wordCount);
+        printInorderHelper(currNode->right, titles);
+    }
+}
+*/
