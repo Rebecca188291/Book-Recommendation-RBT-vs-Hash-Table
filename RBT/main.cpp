@@ -1,6 +1,3 @@
-// RBT.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iomanip>
 #include <iostream>
 #include <fstream>
@@ -11,6 +8,7 @@
 
 #include "Book.h"
 #include "tree.h"
+//#include "HashTable.h"
 using namespace std;
 
 int main()
@@ -58,6 +56,14 @@ int main()
 
     int desired_wordCount = 50000;
 
+    Book desired_book(desired_genre, "[desired]", "[desired]", desired_wordCount);
+
+    int data_structure;
+    cout << "Enter number of which data structure to use: " << endl;
+    cout << "1. Red Black Tree" << endl;
+    cout << "2. Hash Table" << endl;
+    cin >> data_structure;
+
     // Make a vector of book objects
     vector<Book> library;
 
@@ -103,22 +109,38 @@ int main()
         library.push_back(book);
     }
 
+    if (data_structure == 1)
+    {
+        for (Book book : library)
+        {
+            RBTree.insert(book);
+            cout << book.wordCount << endl;
+        }
+        RBTree.printTop5(desired_wordCount);
+    }
 
-    //for (Book book : library)
-    //{
-    //    RBTree.insert(book);
-    //    cout << book.wordCount << endl;
-    //}
+    if (data_structure == 2)
+    {
+        //HashTable h;
+        //h.getDesiredBook(desired_book);
+        //for (int i = 0; i < library.size(); i++)
+        //{
+        //    h.insert(library.at(i));
+        //}
+        //h.getTop5();
+        cout << "hash table stuff" << endl;
+    }
 
-    RBTree.insert(library[0]);
+   /* RBTree.insert(library[0]);
     RBTree.insert(library[1]);
     RBTree.insert(library[2]);
-    RBTree.insert(library[3]);
+    RBTree.insert(library[3]);*/
 
 
-    RBTree.printInorder();
-    RBTree.remove(library[0].wordCount);
-    RBTree.printInorder();
+    //RBTree.printInorder();
+    //RBTree.remove(library[0].wordCount);
+    //RBTree.printTop5(58000);
+    //RBTree.printInorder();
     //cout << "root: " << RBTree.root->bookNode.wordCount << endl;
 
 

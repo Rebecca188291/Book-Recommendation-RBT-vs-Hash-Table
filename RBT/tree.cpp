@@ -254,6 +254,7 @@ bool tree::remove(int wordcount)
                 delete successorParent->left->right;
                 successorParent->left->right = root->right;
                 root->right->parent = successorParent->left;
+                successorParent->left->left = root->left;
                 delete root;
                 root = successorParent->left;
                 successorParent->left = temp;
@@ -483,7 +484,81 @@ tree::TreeNode* tree::traversal(TreeNode* root, int wordcount)
     }
 }
 
-void printTop5(int targetWordCount)
+tree::TreeNode* tree::tracker(TreeNode* root, int wordcount, vector<Book>& library)
 {
+    if (root == nullptr)
+    {
+        return nullptr;
+    }
+    library.push_back(root->bookNode);
+    if (root->bookNode.wordCount == wordcount)
+    {
+        return nullptr;
+    }
+    if (root->bookNode.wordCount > wordcount)
+    {
+        if (root->left == nullptr)
+        {
+            return nullptr;
+        }
+        //if (root->left->bookNode.wordCount == wordcount)
+        //{
+        //    return root;
+        //}
+        return tracker(root->left, wordcount, library);
+    }
+    else
+    {
+        if (root->right == nullptr)
+        {
+            return nullptr;
+        }
+        //if (root->right->bookNode.wordCount == wordcount)
+        //{
+        //    return root;
+        //}
+        return tracker(root->right, wordcount, library);
+    }
+}
 
+vector<Book> tree::findTop5(int targetWordCount)
+{
+    vector<Book> library;
+    vector<Book> nodePath;
+    //temp doesn't do anything, tracker just returns tree node bc it's recursive, we only care about nodePath
+    TreeNode* temp = tracker(root, targetWordCount, nodePath);
+    while (library.size() < 5)
+    {
+        int minDiff = abs(nodePath[0].wordCount - targetWordCount);
+        Book minBook = nodePath[0];
+        for (int i = 1; i < nodePath.size(); i++)
+        {
+            int currDiff = abs(nodePath[i].wordCount - targetWordCount);
+            if (currDiff < minDiff)
+            {
+                minDiff = currDiff;
+                minBook = nodePath[i];
+            }
+        }
+        library.push_back(minBook);
+        bool removed = remove(minBook.wordCount);
+        nodePath.clear();
+        TreeNode* temp = tracker(root, targetWordCount, nodePath);
+    }
+    return library;
+}
+
+void tree::printTop5(int targetWordCount)
+{
+    vector<Book> library;
+    library = findTop5(targetWordCount);
+    cout << "Your top 5 recommended books are: " << endl;
+    cout << endl;
+    for (int i = 0; i < library.size(); i++)
+    {
+        cout << i + 1 << ". " << library[i].title << endl;
+        cout << "Author: " << library[i].author << endl;
+        cout << "Word count: " << library[i].wordCount << endl;
+        cout << endl;
+    }
 }

@@ -30,8 +30,10 @@ class tree
     TreeNode* rotateLeftChild(TreeNode* parent, TreeNode* child);
     void printInorder();
     void printInorderHelper(TreeNode* currNode, vector<int>& titles);
-    bool remove(int wordCount);
+    bool remove(int wordcount);
     TreeNode* traversal(TreeNode* root, int wordcount);
+    TreeNode* tracker(TreeNode* root, int wordcount, vector<Book>& library);
+    vector<Book> findTop5(int targetWordCount);
 
 
 
