@@ -13,9 +13,16 @@ using namespace std;
 
 int main()
 {
-    string desired_genre = "PR";
+    // parse user input: genre, word count
+    string desired_genre;
+    cout << "Enter desired genre code: ";
+    cin >> desired_genre;
 
-    int desired_wordCount = 50000;
+    // desired_genre = "HQ"; // hard-coded for testing
+
+    int desired_wordCount;
+    cout << "Enter desired word count: ";
+    cin >> desired_wordCount;
 
     Book desired_book(desired_genre, "[desired]", "[desired]", desired_wordCount);
 
